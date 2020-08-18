@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { ApolloProvider } from 'react-apollo'
 import { client } from './apollo/client'
-import { Route, Switch, BrowserRouter, withRouter, Redirect } from 'react-router-dom'
+import { Route, Switch, HashRouter, BrowserRouter, withRouter, Redirect } from 'react-router-dom'
 
 import GlobalPage from './pages/GlobalPage'
 import TokenPage from './pages/TokenPage'
@@ -37,69 +37,70 @@ function App() {
     <ApolloProvider client={client}>
       <AppWrapper>
         {globalData &&
-        Object.keys(globalData).length > 0 &&
-        globalChartData &&
-        Object.keys(globalChartData).length > 0 ? (
-          <BrowserRouter>
-            <Switch>
-              <Route
-                exacts
-                strict
-                path="/token/:tokenAddress"
-                render={({ match }) => {
-                  if (
-                    isAddress(match.params.tokenAddress.toLowerCase()) &&
-                    !OVERVIEW_TOKEN_BLACKLIST.includes(match.params.tokenAddress.toLowerCase())
-                  ) {
-                    return (
-                      <>
-                        <NavHeaderUpdated token={match.params.tokenAddress.toLowerCase()} />
-                        <TokenPage address={match.params.tokenAddress.toLowerCase()} />
-                      </>
-                    )
-                  } else {
-                    return <Redirect to="/home" />
-                  }
-                }}
-              />
-              <Route
-                exacts
-                strict
-                path="/pair/:pairAddress"
-                render={({ match }) => {
-                  if (
-                    isAddress(match.params.pairAddress.toLowerCase()) &&
-                    !OVERVIEW_PAIR_BLACKLIST.includes(match.params.pairAddress.toLowerCase())
-                  ) {
-                    return (
-                      <>
-                        <NavHeaderUpdated pair={match.params.pairAddress.toLowerCase()} />
-                        <PairPage pairAddress={match.params.pairAddress.toLowerCase()} />
-                      </>
-                    )
-                  } else {
-                    return <Redirect to="/home" />
-                  }
-                }}
-              />
-              <Route path="/home">
-                <NavHeaderUpdated />
-                <GlobalPage />
-              </Route>
-              <Route path="/all-tokens">
-                <NavHeaderUpdated />
-                <AllTokensPage />
-              </Route>
-              <Route path="/all-pairs">
-                <NavHeaderUpdated />
-                <AllPairsPage />
-              </Route>
-              <Redirect to="/home" />
-            </Switch>
-          </BrowserRouter>
-        ) : (
-          <LocalLoader fill="true" />
-        )}
+          Object.keys(globalData).length > 0 &&
+          globalChartData &&
+          Object.keys(globalChartData).length > 0 ? (
+            // <HashRouter basename="/web/uniswap-info/">
+            <HashRouter>
+              <Switch>
+                <Route
+                  exacts
+                  strict
+                  path="/token/:tokenAddress"
+                  render={({ match }) => {
+                    if (
+                      isAddress(match.params.tokenAddress.toLowerCase()) &&
+                      !OVERVIEW_TOKEN_BLACKLIST.includes(match.params.tokenAddress.toLowerCase())
+                    ) {
+                      return (
+                        <>
+                          <NavHeaderUpdated token={match.params.tokenAddress.toLowerCase()} />
+                          <TokenPage address={match.params.tokenAddress.toLowerCase()} />
+                        </>
+                      )
+                    } else {
+                      return <Redirect to="/home" />
+                    }
+                  }}
+                />
+                <Route
+                  exacts
+                  strict
+                  path="/pair/:pairAddress"
+                  render={({ match }) => {
+                    if (
+                      isAddress(match.params.pairAddress.toLowerCase()) &&
+                      !OVERVIEW_PAIR_BLACKLIST.includes(match.params.pairAddress.toLowerCase())
+                    ) {
+                      return (
+                        <>
+                          <NavHeaderUpdated pair={match.params.pairAddress.toLowerCase()} />
+                          <PairPage pairAddress={match.params.pairAddress.toLowerCase()} />
+                        </>
+                      )
+                    } else {
+                      return <Redirect to="/home" />
+                    }
+                  }}
+                />
+                <Route path="/home">
+                  <NavHeaderUpdated />
+                  <GlobalPage />
+                </Route>
+                <Route path="/all-tokens">
+                  <NavHeaderUpdated />
+                  <AllTokensPage />
+                </Route>
+                <Route path="/all-pairs">
+                  <NavHeaderUpdated />
+                  <AllPairsPage />
+                </Route>
+                <Redirect to="/home" />
+              </Switch>
+            </HashRouter>
+          ) : (
+            <LocalLoader fill="true" />
+          )}
       </AppWrapper>
     </ApolloProvider>
   )
