@@ -217,7 +217,7 @@ function PairPage({ pairAddress, history }) {
               </Text>{' '}
             </RowFixed>
           </RowFixed>
-          <RowFixed
+          {/* <RowFixed
             mb={20}
             ml={below600 ? '0' : '2.5rem'}
             style={{ flexDirection: below1080 ? 'row-reverse' : 'initial' }}
@@ -225,12 +225,12 @@ function PairPage({ pairAddress, history }) {
             <Link external href={getPoolLink(token0?.id, token1?.id)}>
               <ButtonLight color={backgroundColor}>+ 增加流动性</ButtonLight>
             </Link>
-            {/* <Link external href={getSwapLink(token0?.id, token1?.id)}>
+            <Link external href={getSwapLink(token0?.id, token1?.id)}>
               <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
                 立即交易
               </ButtonDark>
-            </Link> */}
-          </RowFixed>
+            </Link>
+          </RowFixed> */}
         </RowBetween>
         <AutoRow gap="6px">
           <FixedPanel onClick={() => history.push(`/token/${token0?.id}`)}>
