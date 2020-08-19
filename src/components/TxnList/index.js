@@ -316,41 +316,41 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
             <DropdownSelect options={TXN_TYPE} active={txFilter} setActive={setTxFilter} color={color} />
           </RowBetween>
         ) : (
-          <RowFixed area="txn" gap="10px" pl={4}>
-            <SortText
-              onClick={() => {
-                setTxFilter(TXN_TYPE.ALL)
-              }}
-              active={txFilter === TXN_TYPE.ALL}
-            >
-              All
+            <RowFixed area="txn" gap="10px" pl={4}>
+              <SortText
+                onClick={() => {
+                  setTxFilter(TXN_TYPE.ALL)
+                }}
+                active={txFilter === TXN_TYPE.ALL}
+              >
+                All
             </SortText>
-            <SortText
-              onClick={() => {
-                setTxFilter(TXN_TYPE.SWAP)
-              }}
-              active={txFilter === TXN_TYPE.SWAP}
-            >
-              Swaps
+              <SortText
+                onClick={() => {
+                  setTxFilter(TXN_TYPE.SWAP)
+                }}
+                active={txFilter === TXN_TYPE.SWAP}
+              >
+                Swaps
             </SortText>
-            <SortText
-              onClick={() => {
-                setTxFilter(TXN_TYPE.ADD)
-              }}
-              active={txFilter === TXN_TYPE.ADD}
-            >
-              Adds
+              <SortText
+                onClick={() => {
+                  setTxFilter(TXN_TYPE.ADD)
+                }}
+                active={txFilter === TXN_TYPE.ADD}
+              >
+                Adds
             </SortText>
-            <SortText
-              onClick={() => {
-                setTxFilter(TXN_TYPE.REMOVE)
-              }}
-              active={txFilter === TXN_TYPE.REMOVE}
-            >
-              Removes
+              <SortText
+                onClick={() => {
+                  setTxFilter(TXN_TYPE.REMOVE)
+                }}
+                active={txFilter === TXN_TYPE.REMOVE}
+              >
+                Removes
             </SortText>
-          </RowFixed>
-        )}
+            </RowFixed>
+          )}
 
         <Flex alignItems="center" justifyContent="flexStart">
           <ClickableText
@@ -361,7 +361,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
               setSortDirection(sortedColumn !== SORT_FIELD.VALUE ? true : !sortDirection)
             }}
           >
-            Total Value {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
+            总价值 {sortedColumn === SORT_FIELD.VALUE ? (!sortDirection ? '↑' : '↓') : ''}
           </ClickableText>
         </Flex>
         {!below780 && (
@@ -411,7 +411,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
                 setSortDirection(sortedColumn !== SORT_FIELD.TIMESTAMP ? true : !sortDirection)
               }}
             >
-              Time {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
+              时间 {sortedColumn === SORT_FIELD.TIMESTAMP ? (!sortDirection ? '↑' : '↓') : ''}
             </ClickableText>
           </Flex>
         </>
@@ -423,15 +423,15 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
         ) : filteredList.length === 0 ? (
           <EmptyCard>No recent transactions found.</EmptyCard>
         ) : (
-          filteredList.map((item, index) => {
-            return (
-              <div key={index}>
-                <ListItem key={index} index={index + 1} item={item} />
-                <Divider />
-              </div>
-            )
-          })
-        )}
+              filteredList.map((item, index) => {
+                return (
+                  <div key={index}>
+                    <ListItem key={index} index={index + 1} item={item} />
+                    <Divider />
+                  </div>
+                )
+              })
+            )}
       </List>
       <PageButtons>
         <div
