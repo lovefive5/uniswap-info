@@ -150,8 +150,8 @@ function PairPage({ pairAddress, history }) {
   const liquidity = trackedReserveUSD
     ? formattedNum(trackedReserveUSD, true)
     : reserveUSD
-    ? formattedNum(reserveUSD, true)
-    : '-'
+      ? formattedNum(reserveUSD, true)
+      : '-'
   const liquidityChange = formattedPercent(liquidityChangeUSD)
 
   // mark if using untracked liquidity
@@ -209,11 +209,11 @@ function PairPage({ pairAddress, history }) {
                   <>
                     <HoverSpan onClick={() => history.push(`/token/${token0?.id}`)}>{token0.symbol}</HoverSpan>
                     <span>-</span>
-                    <HoverSpan onClick={() => history.push(`/token/${token1?.id}`)}>{token1.symbol}</HoverSpan> Pair
+                    <HoverSpan onClick={() => history.push(`/token/${token1?.id}`)}>{token1.symbol}</HoverSpan> 交易对
                   </>
                 ) : (
-                  ''
-                )}
+                    ''
+                  )}
               </Text>{' '}
             </RowFixed>
           </RowFixed>
@@ -223,11 +223,11 @@ function PairPage({ pairAddress, history }) {
             style={{ flexDirection: below1080 ? 'row-reverse' : 'initial' }}
           >
             <Link external href={getPoolLink(token0?.id, token1?.id)}>
-              <ButtonLight color={backgroundColor}>+ Add Liquidity</ButtonLight>
+              <ButtonLight color={backgroundColor}>+ 增加流动性</ButtonLight>
             </Link>
             <Link external href={getSwapLink(token0?.id, token1?.id)}>
               <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
-                Trade
+                立即交易
               </ButtonDark>
             </Link>
           </RowFixed>
@@ -239,8 +239,8 @@ function PairPage({ pairAddress, history }) {
               <TYPE.main fontSize={'16px'} lineHeight={1} fontWeight={500} ml={'4px'}>
                 {token0 && token1
                   ? `1 ${token0?.symbol} = ${token0Rate} ${token1?.symbol} ${
-                      parseFloat(token0?.derivedETH) ? '(' + token0USD + ')' : ''
-                    }`
+                  parseFloat(token0?.derivedETH) ? '(' + token0USD + ')' : ''
+                  }`
                   : '-'}
               </TYPE.main>
             </RowFixed>
@@ -251,8 +251,8 @@ function PairPage({ pairAddress, history }) {
               <TYPE.main fontSize={'16px'} lineHeight={1} fontWeight={500} ml={'4px'}>
                 {token0 && token1
                   ? `1 ${token1?.symbol} = ${token1Rate} ${token0?.symbol}  ${
-                      parseFloat(token1?.derivedETH) ? '(' + token1USD + ')' : ''
-                    }`
+                  parseFloat(token1?.derivedETH) ? '(' + token1USD + ')' : ''
+                  }`
                   : '-'}
               </TYPE.main>
             </RowFixed>
@@ -269,7 +269,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>Total Liquidity {!usingTracked ? '(Untracked)' : ''}</TYPE.main>
+                    <TYPE.main>总流动资产 {!usingTracked ? '(未追踪的)' : ''}</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -283,7 +283,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>Volume (24hrs)</TYPE.main>
+                    <TYPE.main>交易量 (24hrs)</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -297,7 +297,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>Fees (24hrs)</TYPE.main>
+                    <TYPE.main>费用 (24hrs)</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -305,8 +305,8 @@ function PairPage({ pairAddress, history }) {
                       {oneDayVolumeUSD
                         ? formattedNum(oneDayVolumeUSD * 0.003, true)
                         : oneDayVolumeUSD === 0
-                        ? '$0'
-                        : '-'}
+                          ? '$0'
+                          : '-'}
                     </TYPE.main>
                     <TYPE.main>{volumeChange}</TYPE.main>
                   </RowBetween>
@@ -315,7 +315,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>Transactions (24hrs)</TYPE.main>
+                    <TYPE.main>交易数 (24hrs)</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -329,7 +329,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>Pooled Tokens</TYPE.main>
+                    <TYPE.main>总Token</TYPE.main>
                     <div />
                   </RowBetween>
                   <Hover onClick={() => history.push(`/token/${token0?.id}`)} fade={true}>
@@ -355,7 +355,7 @@ function PairPage({ pairAddress, history }) {
               </Panel>
             </PanelWrapper>
             <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
-              Transactions
+              交易记录
             </TYPE.main>{' '}
             <Panel
               style={{
@@ -366,7 +366,7 @@ function PairPage({ pairAddress, history }) {
               {transactions ? <TxnList transactions={transactions} /> : <Loader />}
             </Panel>
             <RowBetween style={{ marginTop: '3rem' }}>
-              <TYPE.main fontSize={'1.125rem'}>Pair Information</TYPE.main>{' '}
+              <TYPE.main fontSize={'1.125rem'}>交易对信息</TYPE.main>{' '}
             </RowBetween>
             <Panel
               rounded
@@ -378,14 +378,14 @@ function PairPage({ pairAddress, history }) {
             >
               <TokenDetailsLayout>
                 <Column>
-                  <TYPE.main>Pair Name</TYPE.main>
+                  <TYPE.main>交易对名称</TYPE.main>
                   <Text style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                     {token0 && token1 ? token0.symbol + '-' + token1.symbol : ''}
                   </Text>
                 </Column>
 
                 <Column>
-                  <TYPE.main>Pair Address</TYPE.main>
+                  <TYPE.main>交易对地址</TYPE.main>
                   <AutoRow align="flex-end">
                     <Text style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                       {pairAddress.slice(0, 6) + '...' + pairAddress.slice(38, 42)}
@@ -413,7 +413,7 @@ function PairPage({ pairAddress, history }) {
                 </Column>
                 <ButtonLight color={backgroundColor}>
                   <Link color={backgroundColor} external href={'https://etherscan.io/address/' + pairAddress}>
-                    View on Etherscan ↗
+                    在 Etherscan 浏览相关信息 ↗
                   </Link>
                 </ButtonLight>
               </TokenDetailsLayout>

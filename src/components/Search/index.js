@@ -323,11 +323,11 @@ export const Search = ({ small = false }) => {
           ref={wrapperRef}
           placeholder={
             below410
-              ? 'Search...'
+              ? '查找...'
               : below470
-              ? 'Search Uniswap...'
+              ? '在Uniswap上查找...'
               : below700
-              ? 'Search pairs and tokens...'
+              ? '查找交易对或者Token...'
               : small
               ? 'Search pairs and tokens...'
               : 'Search or paste address to find Uniswap pairs and tokens...'
