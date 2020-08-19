@@ -204,7 +204,7 @@ function PairPage({ pairAddress, history }) {
               {token0 && token1 && (
                 <DoubleTokenLogo a0={token0?.id || ''} a1={token1?.id || ''} size={32} margin={true} />
               )}{' '}
-              <Text fontSize={'2rem'} fontWeight={600} style={{ margin: '0 1rem' }}>
+              <Text fontSize={'1rem'} fontWeight={600} style={{ margin: '0 1rem' }}>
                 {token0 && token1 ? (
                   <>
                     <HoverSpan onClick={() => history.push(`/token/${token0?.id}`)}>{token0.symbol}</HoverSpan>
@@ -225,11 +225,11 @@ function PairPage({ pairAddress, history }) {
             <Link external href={getPoolLink(token0?.id, token1?.id)}>
               <ButtonLight color={backgroundColor}>+ 增加流动性</ButtonLight>
             </Link>
-            <Link external href={getSwapLink(token0?.id, token1?.id)}>
+            {/* <Link external href={getSwapLink(token0?.id, token1?.id)}>
               <ButtonDark ml={'.5rem'} mr={below1080 && '.5rem'} color={backgroundColor}>
                 立即交易
               </ButtonDark>
-            </Link>
+            </Link> */}
           </RowFixed>
         </RowBetween>
         <AutoRow gap="6px">
@@ -269,7 +269,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>总流动资产 {!usingTracked ? '(未追踪的)' : ''}</TYPE.main>
+                    <TYPE.main>总流动资产 {!usingTracked ? '' : ''}</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -412,7 +412,7 @@ function PairPage({ pairAddress, history }) {
                   </AutoRow>
                 </Column>
                 <ButtonLight color={backgroundColor}>
-                  <Link color={backgroundColor} external href={'https://etherscan.io/address/' + pairAddress}>
+                  <Link color={backgroundColor} external href={'https://cn.etherscan.com/address/' + pairAddress}>
                     在 Etherscan 浏览相关信息 ↗
                   </Link>
                 </ButtonLight>
