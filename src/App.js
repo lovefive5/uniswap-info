@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { ApolloProvider } from 'react-apollo'
 import { client } from './apollo/client'
-import { Route, Switch, HashRouter, BrowserRouter, withRouter, Redirect } from 'react-router-dom'
+import { Route, Switch, HashRouter, withRouter, Redirect } from 'react-router-dom'
 
 import GlobalPage from './pages/GlobalPage'
 import TokenPage from './pages/TokenPage'

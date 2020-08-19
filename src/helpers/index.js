@@ -22,7 +22,7 @@ export function getPoolLink(token0Address, token1Address = null) {
       token0Address === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
         ? 'ETH'
         : '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
-    }`
+      }`
   } else {
     return `https://uniswap.exchange/add/${token0Address}-${token1Address}`
   }
@@ -30,9 +30,9 @@ export function getPoolLink(token0Address, token1Address = null) {
 
 export function getSwapLink(token0Address, token1Address = null) {
   if (!token1Address) {
-    return `https://uniswap.exchange/swap?inputCurrency=${token0Address}`
+    return `https://more.ethte.com/web/uniswap/#/swap?inputCurrency=${token0Address}`
   } else {
-    return `https://uniswap.exchange/swap?inputCurrency=${token0Address}&outputCurrency=${token1Address}`
+    return `https://more.ethte.com/web/uniswap/#/swap?inputCurrency=${token0Address}&outputCurrency=${token1Address}`
   }
 }
 
