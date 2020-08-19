@@ -124,6 +124,33 @@ const WarningGrouping = styled.div`
   pointer-events: ${({ disabled }) => disabled && 'none'};
 `
 
+const getUrlValue = () => {
+  //首先获取地址
+  let url = window.location.href;
+  //获取传值
+  let arr = url.split("?");
+  //判断是否有传值
+  if (arr.length === 1) {
+    return {};
+  }
+  //获取get传值的个数
+  let value_arr = arr[1].split("&");
+  //循环生成返回的对象
+  let obj = {};
+  for (let i = 0; i < value_arr.length; i++) {
+    let key_val = value_arr[i].split("=");
+    obj[key_val[0]] = key_val[1];
+  }
+  return obj;
+}
+
+const lang = (getUrlValue()['lang'] || 'zh');
+
+const language = !(lang.toLowerCase().indexOf('zh') >= 0) ? 'en' : 'zh';
+
+const isZH = language === 'zh';
+console.log(window.location.href, getUrlValue())
+
 function PairPage({ pairAddress, history }) {
   const {
     token0,
@@ -209,7 +236,8 @@ function PairPage({ pairAddress, history }) {
                   <>
                     <HoverSpan onClick={() => history.push(`/token/${token0?.id}`)}>{token0.symbol}</HoverSpan>
                     <span>-</span>
-                    <HoverSpan onClick={() => history.push(`/token/${token1?.id}`)}>{token1.symbol}</HoverSpan> 交易对
+                    <HoverSpan onClick={() => history.push(`/token/${token1?.id}`)}>{token1.symbol}</HoverSpan>
+                    {isZH ? '交易对' : 'Pair'}
                   </>
                 ) : (
                     ''
@@ -269,7 +297,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>总流动资产 {!usingTracked ? '' : ''}</TYPE.main>
+                    <TYPE.main>{isZH ? '总流动资产' : 'Total Liquidity'} {!usingTracked ? '' : ''}</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -283,7 +311,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>交易量 (24hrs)</TYPE.main>
+                    <TYPE.main>{isZH ? '交易量' : 'Volume'} (24hrs)</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -297,7 +325,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>费用 (24hrs)</TYPE.main>
+                    <TYPE.main>{isZH ? '费用' : 'Fees'} (24hrs)</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -315,7 +343,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>交易数 (24hrs)</TYPE.main>
+                    <TYPE.main>{isZH ? '交易数' : 'Transactions'} (24hrs)</TYPE.main>
                     <div />
                   </RowBetween>
                   <RowBetween align="flex-end">
@@ -329,7 +357,7 @@ function PairPage({ pairAddress, history }) {
               <Panel style={{ height: '100%' }}>
                 <AutoColumn gap="20px">
                   <RowBetween>
-                    <TYPE.main>总Token</TYPE.main>
+                    <TYPE.main>{isZH ? "总Token" : 'Pooled Tokens'}</TYPE.main>
                     <div />
                   </RowBetween>
                   <Hover onClick={() => history.push(`/token/${token0?.id}`)} fade={true}>
@@ -355,7 +383,7 @@ function PairPage({ pairAddress, history }) {
               </Panel>
             </PanelWrapper>
             <TYPE.main fontSize={'1.125rem'} style={{ marginTop: '3rem' }}>
-              交易记录
+              {isZH ? '交易记录' : 'Transactions'}
             </TYPE.main>{' '}
             <Panel
               style={{
@@ -366,7 +394,7 @@ function PairPage({ pairAddress, history }) {
               {transactions ? <TxnList transactions={transactions} /> : <Loader />}
             </Panel>
             <RowBetween style={{ marginTop: '3rem' }}>
-              <TYPE.main fontSize={'1.125rem'}>交易对信息</TYPE.main>{' '}
+              <TYPE.main fontSize={'1.125rem'}>{isZH ? '交易对信息' : 'Pair Information'}</TYPE.main>{' '}
             </RowBetween>
             <Panel
               rounded
@@ -378,14 +406,14 @@ function PairPage({ pairAddress, history }) {
             >
               <TokenDetailsLayout>
                 <Column>
-                  <TYPE.main>交易对名称</TYPE.main>
+                  <TYPE.main>{isZH ? '交易对名称' : 'Pair Name'}</TYPE.main>
                   <Text style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                     {token0 && token1 ? token0.symbol + '-' + token1.symbol : ''}
                   </Text>
                 </Column>
 
                 <Column>
-                  <TYPE.main>交易对地址</TYPE.main>
+                  <TYPE.main>{isZH ? '交易对地址' : 'Pair Address'}</TYPE.main>
                   <AutoRow align="flex-end">
                     <Text style={{ marginTop: '.5rem' }} fontSize={24} fontWeight="500">
                       {pairAddress.slice(0, 6) + '...' + pairAddress.slice(38, 42)}
@@ -412,8 +440,8 @@ function PairPage({ pairAddress, history }) {
                   </AutoRow>
                 </Column>
                 <ButtonLight color={backgroundColor}>
-                  <Link color={backgroundColor} external href={'https://cn.etherscan.com/address/' + pairAddress}>
-                    在 Etherscan 浏览相关信息 ↗
+                  <Link color={backgroundColor} external href={isZH ? 'https://cn.etherscan.com/address/' : 'https://etherscan.io/address/' + pairAddress}>
+                    {isZH ? '在 Etherscan 浏览相关信息 ↗' : 'View on Etherscan ↗'}
                   </Link>
                 </ButtonLight>
               </TokenDetailsLayout>
