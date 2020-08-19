@@ -45,7 +45,7 @@ const PageWrapper = styled.div`
   }
 
   & > * {
-    width: 90%;
+    width: 100%;
     max-width: 1240px;
   }
 `

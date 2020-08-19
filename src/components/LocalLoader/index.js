@@ -25,8 +25,9 @@ const Loader = styled.div`
 
 const LocalLoader = ({ fill }) => {
   return (
-    <Loader fill={fill}>
+    <Loader fill={fill} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <img src={require('./loading.gif')} alt="loading-icon" />
+      <div>Loading...</div>
     </Loader>
   )
 }

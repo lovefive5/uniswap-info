@@ -9,7 +9,7 @@ import TokenPage from './pages/TokenPage'
 import PairPage from './pages/PairPage'
 import NavHeader from './components/NavHeader'
 import LocalLoader from './components/LocalLoader'
-// import { useGlobalData, useGlobalChartData } from './contexts/GlobalData'
+import { useGlobalData, useGlobalChartData } from './contexts/GlobalData'
 import { isAddress } from './helpers'
 import { OVERVIEW_TOKEN_BLACKLIST, OVERVIEW_PAIR_BLACKLIST } from './constants'
 import AllTokensPage from './pages/AllTokensPage'
@@ -30,10 +30,9 @@ const AppWrapper = styled.div`
 function App() {
   const NavHeaderUpdated = withRouter(props => <NavHeader default {...props} />)
 
-  // const globalData = useGlobalData()
-  // const globalChartData = useGlobalChartData()
-  // globalData && Object.keys(globalData).length > 0 &&globalChartData &&Object.keys(globalChartData).length > 0
-  const closeLoading = true;
+  const globalData = useGlobalData();
+  const globalChartData = useGlobalChartData();
+  const closeLoading = globalData && Object.keys(globalData).length > 0 && globalChartData && Object.keys(globalChartData).length > 0;
   return (
     <ApolloProvider client={client}>
       <AppWrapper>

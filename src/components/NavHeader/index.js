@@ -20,6 +20,7 @@ const Header = styled.div`
   @media screen and (max-width: 640px) {
     width: calc(100% - 40px);
     padding: 32px 20px;
+    display: none;
   }
 `
 
@@ -57,37 +58,37 @@ export default function NavHeader({ token, pair, account }) {
       </AutoColumn>
     </Header>
   ) : (
-    <Header>
-      <RowBetween>
-        <Title token={token} pair={pair} account={account} />
-        <RowFixed>
-          {!isHome && (
-            <div style={{ width: '370px' }}>
-              {' '}
-              <Search small={true} />
-            </div>
-          )}
-          {isHome && (
-            <CombinedWrapper>
-              {!below1024 && (
-                <>
-                  <CombinedData>
-                    Combined Liquidity: <b>{liquidity}</b>
-                  </CombinedData>
-                  <CombinedData>
-                    Combined Vol: <b>{volume}</b>
-                  </CombinedData>
-                </>
-              )}
-              <Link href="https://migrate.uniswap.info" target="_blank">
-                <ButtonDark style={{ minWidth: 'initial', height: '36px' }}>
-                  View combined {below1024 && 'data'} ↗
+      <Header>
+        <RowBetween>
+          <Title token={token} pair={pair} account={account} />
+          <RowFixed>
+            {!isHome && (
+              <div style={{ width: '370px' }}>
+                {' '}
+                <Search small={true} />
+              </div>
+            )}
+            {isHome && (
+              <CombinedWrapper>
+                {!below1024 && (
+                  <>
+                    <CombinedData>
+                      Combined Liquidity: <b>{liquidity}</b>
+                    </CombinedData>
+                    <CombinedData>
+                      Combined Vol: <b>{volume}</b>
+                    </CombinedData>
+                  </>
+                )}
+                <Link href="https://migrate.uniswap.info" target="_blank">
+                  <ButtonDark style={{ minWidth: 'initial', height: '36px' }}>
+                    View combined {below1024 && 'data'} ↗
                 </ButtonDark>
-              </Link>
-            </CombinedWrapper>
-          )}
-        </RowFixed>
-      </RowBetween>
-    </Header>
-  )
+                </Link>
+              </CombinedWrapper>
+            )}
+          </RowFixed>
+        </RowBetween>
+      </Header>
+    )
 }
