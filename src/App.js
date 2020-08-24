@@ -32,7 +32,8 @@ function App() {
 
   const globalData = useGlobalData();
   const globalChartData = useGlobalChartData();
-  const closeLoading = globalData && Object.keys(globalData).length > 0 && globalChartData && Object.keys(globalChartData).length > 0;
+  const closeLoading = globalData && Object.keys(globalData).length > 0;
+  // const closeLoading = globalData && Object.keys(globalData).length > 0 && globalChartData && Object.keys(globalChartData).length > 0;
   return (
     <ApolloProvider client={client}>
       <AppWrapper>

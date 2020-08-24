@@ -467,8 +467,8 @@ export const PAIR_DATA = (pairAddress, block) => {
     }`
     : ` query pairs {
       pairs( where: { id: "` +
-      pairAddress +
-      `"}) {
+    pairAddress +
+    `"}) {
         id
         txCount
         token0 {
@@ -550,7 +550,7 @@ export const PAIRS_BULK = gql`
 
 export const ALL_TOKENS = gql`
   query tokens($skip: Int!) {
-    tokens(first: 1000, skip: $skip) {
+    tokens(first: 10, skip: $skip) {
       id
       name
       symbol
@@ -560,7 +560,7 @@ export const ALL_TOKENS = gql`
 
 export const ALL_PAIRS = gql`
   query pairs($skip: Int!) {
-    pairs(first: 1000, skip: $skip) {
+    pairs(first: 10, skip: $skip) {
       id
       token0 {
         id

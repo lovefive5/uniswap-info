@@ -379,9 +379,9 @@ async function getAllPairsOnUniswap() {
         },
         fetchPolicy: 'cache-first'
       })
-      skipCount = skipCount + 1000
+      skipCount = skipCount + 10
       pairs = pairs.concat(result?.data?.pairs)
-      if (result?.data?.pairs.length < 1000) {
+      if (result?.data?.pairs.length < 10) {
         allFound = true
       }
     }
@@ -405,10 +405,10 @@ async function getAllTokensOnUniswap() {
         fetchPolicy: 'cache-first'
       })
       tokens = tokens.concat(result?.data?.tokens)
-      if (result?.data?.tokens?.length < 1000) {
+      if (result?.data?.tokens?.length < 10) {
         allFound = true
       }
-      skipCount = skipCount += 1000
+      skipCount = skipCount += 10
     }
     return tokens
   } catch (e) {
@@ -424,8 +424,12 @@ export function useGlobalData() {
 
   useEffect(() => {
     async function fetchData() {
+      let cacheData = localStorage.getItem('globalData') || '{}';
+      cacheData = JSON.parse(cacheData)
+      update(cacheData);
       let globalData = await getGlobalData(ethPrice, oldEthPrice)
       globalData && update(globalData)
+      localStorage.setItem('globalData', JSON.stringify(globalData))
 
       let allPairs = await getAllPairsOnUniswap()
       updateAllPairsInUniswap(allPairs)
